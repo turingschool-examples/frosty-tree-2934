@@ -26,10 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_15_165754) do
   create_table "guests", force: :cascade do |t|
     t.string "name"
     t.integer "nights"
-    t.bigint "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["room_id"], name: "index_guests_on_room_id"
   end
 
   create_table "hotels", force: :cascade do |t|
@@ -50,6 +48,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_15_165754) do
 
   add_foreign_key "guest_rooms", "guests"
   add_foreign_key "guest_rooms", "rooms"
-  add_foreign_key "guests", "rooms"
   add_foreign_key "rooms", "hotels"
 end
