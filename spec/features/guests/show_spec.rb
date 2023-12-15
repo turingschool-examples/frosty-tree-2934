@@ -6,6 +6,7 @@ RSpec.describe "Guest Show Page", type: :feature do
     @guest_1 = Guest.create!(name: "John Smith")
     @room_1 = @hotel_1.rooms.create!(suite: "Master", rate: 300)
     @room_2 = @hotel_1.rooms.create!(suite: "Economy", rate: 100)
+    @room_3 = @hotel_1.rooms.create!(suite: "Deluxe", rate: 200)
 
     Stay.create!(guest: @guest_1, room: @room_1)
     Stay.create!(guest: @guest_1, room: @room_2)
@@ -40,14 +41,13 @@ RSpec.describe "Guest Show Page", type: :feature do
 
     visit "guests/#{@guest_1.id}"
     #Then I see a form to add a room to this guest.
-    expect(page).to have_content("Add a room")
+    expect(page).to have_content("Add a Stay for this Guest")
     #When I fill in a field with the id of an existing room
-    fill_in :suite, with: "Deluxe"
-    fill_in :rate, with: 200
+    fill_in :room_id, with: "#{@room_3.id}"
     #And I click submit
-    click_button "Submit"
+    click_button "Add Room"
     #Then I am redirected back to the guest's show page
-    expect(current_path).to eq("guests/#{@guest_1.id}")
+    expect(current_path).to eq("/guests/#{@guest_1.id}")
     #And I see the room now listed under this guest's rooms.
     expect(page).to have_content("Deluxe")
     expect(page).to have_content("200")
