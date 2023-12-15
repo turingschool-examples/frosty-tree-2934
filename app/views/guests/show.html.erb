@@ -14,7 +14,7 @@
 <section id ="add-a-room"
   <h2> Add a Room: </h2>
 
-  <%= form_with url: "/guests/#{@guest.id}", method: :patch, data: { turbo: false } do |f| %>
+  <%= form_with url: "/guests/#{@guest.id}", method: :post, data: { turbo: false } do |f| %>
     <%= f.label :room_id, "Room ID" %>
     <%= f.text_field :room_id %></br>
 
