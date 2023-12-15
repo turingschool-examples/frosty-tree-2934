@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Room, type: :model do
+RSpec.describe "Guest" do
   before (:each) do
     @hotel_1 = Hotel.create!(name: "Echo Mountain Inn", location: "Echo Mountain")
     @hotel_2 = Hotel.create!(name: "A-basin Hotel", location: "A-basin")
@@ -27,22 +27,33 @@ RSpec.describe Room, type: :model do
 
   end
 
-  describe "relationships" do
-    it { should belong_to :hotel }
-  end
+  it "has a rooms index page that displays all rooms" do
+    visit "/rooms"
 
+   
+    expect(page).to have_content(@room_3.suite)
+    expect(page).to have_content(@room_4.suite)
+    expect(page).to have_content(@room_5.suite)
+    expect(page).to have_content(@room_6.suite)
 
-  describe Room, type: :model do
-    describe "relationships" do
-      it {should have_many(:guest_rooms)}
-      it {should have_many(:guests).through(:guest_rooms)}
+    expect(page).to have_content(@room_3.rate)
+    expect(page).to have_content(@room_4.rate)
+    expect(page).to have_content(@room_5.rate)
+    expect(page).to have_content(@room_6.rate)
+    
+    within "#index-#{@room_1.id}" do
+      expect(page).to have_content("Number of Guests Stayed: 2")
+      expect(page).to have_content(@room_1.suite)
+      expect(page).to have_content(@room_1.rate)
+      expect(page).to have_content(@room_1.hotel.name)
     end
-  end
 
-  it "has a count number of guests method" do
-    expect(@room_1.count_guests).to eq(2)
-    expect(@room_2.count_guests).to eq(3)
-    expect(@room_3.count_guests).to eq(0)
+    within "#index-#{@room_2.id}" do
+      expect(page).to have_content(3)
+      expect(page).to have_content(@room_2.suite)
+      expect(page).to have_content(@room_2.rate)
+      expect(page).to have_content(@room_2.hotel.name)
+    end
 
   end
 end
