@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get "/guests/:id", to: "guests#show", as: :show_guest
+  patch "/guests/:id", to: "guests#update", as: :patch_suite
+  get "/rooms/:id", to: "rooms#show", as: :show_room
 end
