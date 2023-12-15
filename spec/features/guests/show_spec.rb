@@ -16,7 +16,9 @@ RSpec.describe "Guest Show Page", type: :feature do
 
    expect(page).to have_content("Guest: #{guest.name}")
 
-
+   expect(page).to have_content("Room: #{room1.suite}, Rate: $#{room1.rate}")
+   expect(page).to have_content("Room: #{room2.suite}, Rate: $#{room2.rate}")
    
+   expect(page).to have_content("Room: #{room1.suite}, Rate: $#{room1.rate}, Hotel: #{hotel1.name}")
   end
 end
