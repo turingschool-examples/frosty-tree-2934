@@ -19,10 +19,20 @@ RSpec.describe "Guest Show Page" do
     @guest_room_4 = GuestRoom.create!(guest_id: @guest_3.id, room_id: @room_3.id)
   end
 
-  it "" do
-    visit "/guests/#{@guest_1.id}"
+  it "displays guest name, rooms they've stayed in, and room details" do
+    visit "/guests/#{@guest_2.id}"
 
+    expect(page).to have_content(@guest_2.name)
+    expect(page).to have_content(@guest_2.rooms)
 
+    expect(page).to have_content(@guest_2.rooms.first.suite)
+    expect(page).to have_content(@guest_2.rooms.first.nightly_rate)
+    expect(page).to have_content(@guest_2.rooms.first.hotel_id.name)
+
+    expect(page).to have_content(@guest_2.rooms.second.suite)
+    expect(page).to have_content(@guest_2.rooms.second.nightly_rate)
+    expect(page).to have_content(@guest_2.rooms.second.hotel_id.name)
+    
   end
 
 end
