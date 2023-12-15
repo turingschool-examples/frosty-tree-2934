@@ -35,4 +35,19 @@ RSpec.describe "Guest Show Page" do
     end
   end
 
+  it "has a form to add a room to a given guest" do
+    visit "/guests/#{@guest_1.id}"
+
+    expect(page).to have_content("Room ID")
+    expect(page).to have_button("Submit")
+
+    fill_in("Room ID", with: "#{@room_2.id}")
+    click_button("Submit")
+
+    expect(current_page).to eq("/guests/#{@guest_1.id}")
+    expect(page).to have_content("#{@room_2.suite}")
+    expect(page).to have_content("#{@room_2.rate}")
+    expect(page).to have_content("#{@room_2.hotel.name}")
+  end
+
 end
