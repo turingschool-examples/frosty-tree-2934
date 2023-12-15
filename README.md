@@ -58,7 +58,6 @@ You have been contracted by a luxurious mountain ski hotel & resort to keep trac
 * Rooms belong to a Hotel.
 * Guests have many Rooms.
 * Rooms have many Guests.
-
 Some of the initial model set up and testing has been done for you. Make sure your models & relationships are ready before starting user stories. You do not need to test for or create any model validations. 
 
 ## User Stories
