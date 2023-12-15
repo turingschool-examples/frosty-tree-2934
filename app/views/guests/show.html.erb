@@ -10,3 +10,19 @@
     </ul>
   <% end %>
 </section>
+
+<section id ="add-a-room"
+  <h2> Add a Room: </h2>
+
+  <%= form_with url: "/guests/#{@guest.id}", method: :patch, data: { turbo: false } do |f| %>
+    <%= f.label :room_id, "Room ID" %>
+    <%= f.text_field :room_id %></br>
+
+    <% # Added this because I can't figure out how to pass the guest id into the guest_rooms_controller create method %>
+    <%= f.label :guest_id, "Guest ID" %>
+    <%= f.text_field :guest_id %></br>
+  
+    <%= f.submit "Submit" %>
+  <% end %>
+
+</section>
