@@ -5,4 +5,11 @@
     <p>Suite: <%= room.suite %><br>
     <p>Nightly Rate: $<%= room.rate %><br>
     <p>Hotel: <%= room.hotel.name %><br>
-    <% end %>
+  <% end %>
+
+<h4>Add a room to <%= @guest.name %></h4>
+  <%= form_with url: "/guests/#{@guest.id}", method: :post do |form|%>
+    <%= form.label :room_id, "Room ID" %>
+    <%= form.number_field :room_id %>
+    <%= form.submit "Add Room" %>
+  <% end %>
