@@ -23,8 +23,6 @@ RSpec.describe Room, type: :model do
         honeymoon_suite = holiday_inn.rooms.create(rate: 25, suite: "Honeymoon")
         oval_suite = holiday_inn.rooms.create(rate: 100, suite: "Oval")
         florence = honeymoon_suite.guests.create(name: "Florence Pugh", nights: 12)
-
-        require 'pry'; binding.pry
         
         oval_suite.add_guest_to_room(florence.id)
         expect(florence.rooms).to include(honeymoon_suite, oval_suite)
