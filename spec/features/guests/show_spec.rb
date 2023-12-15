@@ -39,9 +39,10 @@ RSpec.describe "Guest" do
   it "can add a room to a guest" do
     visit "/guests/#{@guest_1.id}"
 
-    expect(page).to have_field(:new_room)
-    
-    fill_in :new_room, with: (@room_4.id)
+    expect(page).to have_field(:room_id)
+    expect(page).to have_content("New room")
+
+    fill_in :room_id, with: (@room_4.id)
     click_button "Submit"
 
     expect(current_path).to eq("/guests/#{@guest_1.id}")
