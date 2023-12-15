@@ -5,3 +5,10 @@ RSpec.describe Room, type: :model do
     it { should belong_to :hotel }
   end
 end
+
+describe Room, type: :model do
+  describe "relationships" do
+     it {should have_many(:guest_rooms)}
+     it {should have_many(:guests).through(:guest_rooms)}
+  end
+end
