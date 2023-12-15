@@ -20,10 +20,23 @@ RSpec.describe "Rooms Index Page" do
     @guest_room_4 = GuestRoom.create!(guest_id: @guest_3.id, room_id: @room_3.id)
   end
 
-  it "" do
+  it "displays all rooms, room details, and guests" do
     visit "/rooms"
 
+    expect(page).to have_content("Hotel: #{@room_1.hotel.name}")
+    expect(page).to have_content("Suite: #{@room_1.suite}")
+    expect(page).to have_content("Rate: #{@room_1.rate}")
+    expect(page).to have_content("Total Guests: #{@room_1.total_guests}")
 
+    expect(page).to have_content("#{@room_2.hotel.name}")
+    expect(page).to have_content("#{@room_2.suite}")
+    expect(page).to have_content("#{@room_2.rate}")
+    expect(page).to have_content("Total Guests: #{@room_2.total_guests}")
+
+    expect(page).to have_content("#{@room_3.hotel.name}")
+    expect(page).to have_content("#{@room_3.suite}")
+    expect(page).to have_content("#{@room_3.rate}")
+    expect(page).to have_content("Total Guests: #{@room_3.total_guests}")
 
   end
 

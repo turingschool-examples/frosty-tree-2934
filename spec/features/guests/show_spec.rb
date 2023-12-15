@@ -25,13 +25,13 @@ RSpec.describe "Guest Show Page" do
     expect(page).to have_content("#{@guest_2.name}")
 
     within("#rooms") do
+      expect(page).to have_content("#{@guest_2.rooms.first.hotel.name}")
       expect(page).to have_content("#{@guest_2.rooms.first.suite}")
       expect(page).to have_content("#{@guest_2.rooms.first.rate}")
-      expect(page).to have_content("#{@guest_2.rooms.first.hotel.name}")
 
+      expect(page).to have_content("#{@guest_2.rooms.second.hotel.name}")
       expect(page).to have_content("#{@guest_2.rooms.second.suite}")
       expect(page).to have_content("#{@guest_2.rooms.second.rate}")
-      expect(page).to have_content("#{@guest_2.rooms.second.hotel.name}")
     end
   end
 
@@ -46,9 +46,9 @@ RSpec.describe "Guest Show Page" do
     click_button("Submit")
 
     expect(current_path).to eq("/guests/#{@guest_1.id}")
+    expect(page).to have_content("#{@room_2.hotel.name}")
     expect(page).to have_content("#{@room_2.suite}")
     expect(page).to have_content("#{@room_2.rate}")
-    expect(page).to have_content("#{@room_2.hotel.name}")
   end
 
 end
