@@ -8,11 +8,13 @@ RSpec.describe Room, type: :model do
 
   describe "class methods" do
     it "should exist, and have a rate and suite" do
-    room = Room.new(rate: 450, suite: "Honeymoon")
+      holiday_inn = Hotel.create(name: "Holiday Inn", location: "Mars")
+      honeymoon_suite = holiday_inn.rooms.create(rate: 25, suite: "Honeymoon")
+      florence = honeymoon_suite.guests.create(name: "Florence Pugh", nights: 12)
     
-    expect(room).to be_a Room
-    expect(room.rate).to eq(450)
-    expect(room.suite).to eq("Honeymoon")
+      expect(honeymoon_suite).to be_a Room
+      expect(honeymoon_suite.rate).to eq(25)
+      expect(honeymoon_suite.suite).to eq("Honeymoon")
     end
   end
 end

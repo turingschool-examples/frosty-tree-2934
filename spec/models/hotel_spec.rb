@@ -7,11 +7,13 @@ RSpec.describe Hotel, type: :model do
 
   describe "class methods" do
     it "should exist, and have a name and location" do
-    inn = Hotel.new(name: "Doubletree Inn", location: "Barstow")
-    
-    expect(inn).to be_a Hotel
-    expect(inn.name).to eq("Doubletree Inn")
-    expect(inn.location).to eq("Barstow")
+      holiday_inn = Hotel.create(name: "Holiday Inn", location: "Mars")
+      honeymoon_suite = holiday_inn.rooms.create(rate: 25, suite: "Honeymoon")
+      florence = honeymoon_suite.guests.create(name: "Florence Pugh", nights: 12)
+      
+      expect(holiday_inn).to be_a Hotel
+      expect(holiday_inn.name).to eq("Holiday Inn")
+      expect(holiday_inn.location).to eq("Mars")
     end
   end
 end

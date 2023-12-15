@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_15_164252) do
     t.bigint "hotel_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "guest_id", null: false
+    t.bigint "guest_id"
     t.index ["guest_id"], name: "index_rooms_on_guest_id"
     t.index ["hotel_id"], name: "index_rooms_on_hotel_id"
   end
