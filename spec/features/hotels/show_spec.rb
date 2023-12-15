@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Room, type: :model do
+RSpec.describe "Hotel" do
   before (:each) do
     @hotel_1 = Hotel.create!(name: "Echo Mountain Inn", location: "Echo Mountain")
     @hotel_2 = Hotel.create!(name: "A-basin Hotel", location: "A-basin")
@@ -23,25 +23,16 @@ RSpec.describe Room, type: :model do
     @guest_room_2 = GuestRoom.create!(guest_id: @guest_2.id, room_id: @room_1.id)
     @guest_room_3 = GuestRoom.create!(guest_id: @guest_3.id, room_id: @room_2.id)
     @guest_room_4 = GuestRoom.create!(guest_id: @guest_4.id, room_id: @room_2.id)
-    @guest_room_5 = GuestRoom.create!(guest_id: @guest_5.id, room_id: @room_2.id)
-
   end
 
-  describe "relationships" do
-    it { should belong_to :hotel }
-  end
+  it "has a show page displaying a unique list of guests that have stayed there" do
+    visit "/hotels/#{@hotel_1.id}"
 
+    expect(page).to have_content(@hotel_1.name)
+    expect(page).to have_content(@guest_1.name)
+    expect(page).to have_content(@guest_2.name)
+    expect(page).to have_content(@guest_3.name)
+    expect(page).to have_content(@guest_4.name)
 
-  describe Room, type: :model do
-    describe "relationships" do
-      it {should have_many(:guest_rooms)}
-      it {should have_many(:guests).through(:guest_rooms)}
-    end
-  end
-
-  it "has a count number of guests method" do
-    expect(@room_1.count_guests).to eq(2)
-    expect(@room_2.count_guests).to eq(3)
-    expect(@room_3.count_guests).to eq(0)
   end
 end

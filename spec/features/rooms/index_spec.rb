@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Guest" do
+RSpec.describe "Room" do
   before (:each) do
     @hotel_1 = Hotel.create!(name: "Echo Mountain Inn", location: "Echo Mountain")
     @hotel_2 = Hotel.create!(name: "A-basin Hotel", location: "A-basin")
@@ -54,6 +54,5 @@ RSpec.describe "Guest" do
       expect(page).to have_content(@room_2.rate)
       expect(page).to have_content(@room_2.hotel.name)
     end
-
   end
 end
