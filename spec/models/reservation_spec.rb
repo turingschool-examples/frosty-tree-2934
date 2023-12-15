@@ -1,6 +1,6 @@
 require "rails_helper"
 
 RSpec.describe Reservation, type: :model do
-  it {should have_many :rooms }
-  it {should have_many :guests }
+  it {should belong_to :room}
+  it {should belong_to :guest}
 end
