@@ -4,7 +4,7 @@ class Room < ApplicationRecord
   has_many :guests, through: :guest_rooms
 
   def total_guests
-    self.guests.count # Is this an AR method or is this ruby??
+    self.guests.count
   end
 
 end

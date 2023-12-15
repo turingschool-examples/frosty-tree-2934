@@ -17,12 +17,9 @@
   <%= form_with url: "/guests/#{@guest.id}", method: :post, data: { turbo: false } do |f| %>
     <%= f.label :room_id, "Room ID" %>
     <%= f.text_field :room_id %></br>
+    <%= hidden_field_tag(:guest_id, @guest.id) %>
 
-    <% # Added this because I can't figure out how to pass the guest id into the guest_rooms_controller create method %>
-    <%= f.label :guest_id, "Guest ID" %>
-    <%= f.text_field :guest_id %></br>
-  
     <%= f.submit "Submit" %>
   <% end %>
-
 </section>
+
