@@ -8,8 +8,10 @@ RSpec.describe "the guest show page", type: :feature do
     room_2 = hotel_1.rooms.create!(rate: 5, suite: "Squatter")
     guest_1 = Guest.create!(name: 'Charlize Theron', nights: 3)
 
+    guest_1.rooms << room_1
+    guest_1.rooms << room_2
     # When I visit a guest's show page
-    visit "/guests/#{guest.id}"
+    visit "/guests/#{guest_1.id}"
     
     # I see the guest's name
     expect(page).to have_content(guest_1.name)
