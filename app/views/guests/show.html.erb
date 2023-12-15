@@ -2,11 +2,12 @@
 
 <p>Rooms Stayed In:</p>
 
-<ul id="rooms-stayed-in">
-  <% @guest.rooms.each do |room| %>
+<% @guest.rooms.each do |room| %>
+<ul id="rooms-stayed-in-<%= room.id %>">
   <li>Room Suite: <%= room.suite %></li>
   <li>Nightly Rate: <%= room.rate %></li>
-  <% end %>
-  <li>Hotel: </li>
-
+  <li>Name of Hotel: <%= room.find_hotel %></li>
 </ul>
+<% end %>
+
+<p>Hotels</p>
