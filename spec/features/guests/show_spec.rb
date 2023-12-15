@@ -30,6 +30,10 @@ RSpec.describe "Guest Show Page", type: :feature do
     expect(page).to have_content(@room_1.rate)
     expect(page).to have_content(@room_2.rate)
     expect(page).to have_content(@hotel_1.name)
+
+    #edge case
+    expect(page).to_not have_content(@room_3.suite)
+    expect(page).to_not have_content(@room_3.rate)
   end
 
   it "can add rooms to a guest via the show page" do
