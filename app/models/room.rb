@@ -7,4 +7,8 @@ class Room < ApplicationRecord
     guest = Guest.find(guest_id)
     self.guests << guest
   end
+
+  def count_guests
+    self.guests.count
+  end
 end

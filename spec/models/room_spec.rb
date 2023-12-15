@@ -27,6 +27,16 @@ RSpec.describe Room, type: :model do
         oval_suite.add_guest_to_room(florence.id)
         expect(florence.rooms).to include(honeymoon_suite, oval_suite)
       end
+
+      it "counts the number of guests" do
+        holiday_inn = Hotel.create(name: "Holiday Inn", location: "Mars")
+        honeymoon_suite = holiday_inn.rooms.create(rate: 25, suite: "Honeymoon")
+        oval_suite = holiday_inn.rooms.create(rate: 100, suite: "Oval")
+        florence = honeymoon_suite.guests.create(name: "Florence Pugh", nights: 12)
+        
+        expect(oval_suite.count_guests).to eq(0)
+        expect(honeymoon_suite.count_guests).to eq(1)
+      end
     end
   end
 end
