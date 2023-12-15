@@ -16,6 +16,6 @@ class GuestsController < ApplicationController
     @guest = Guest.find(params[:id])
     @guest.add_room_by_id(params[:room_id])
 
-    redirect_to "guests/#{@guest.id}"
+    redirect_to "/guests/#{@guest.id}"
   end
 end
