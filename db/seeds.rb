@@ -9,9 +9,9 @@
 @hotel_1 = Hotel.create!(name: "Marriott", location: "Silverthorne")
 @hotel_2 = Hotel.create!(name: "Hilton", location: "Breckenridge")
 
-@room_1 = Room.create!(rate: 200, suite: "Presidential")
-@room_2 = Room.create!(rate: 100, suite: "Deluxe")
-@room_3 = Room.create!(rate: 90, suite: "Standard")
+@room_1 = Room.create!(rate: 200, suite: "Presidential", hotel_id: @hotel_1.id)
+@room_2 = Room.create!(rate: 100, suite: "Deluxe", hotel_id: @hotel_1.id)
+@room_3 = Room.create!(rate: 90, suite: "Standard", hotel_id: @hotel_2.id)
 
 @guest_1 = Guest.create!(name: "Michael Scott", nights: 1)
 @guest_2 = Guest.create!(name: "Dwight Schrute", nights: 2)
