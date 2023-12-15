@@ -1,12 +1,8 @@
 class  GuestsController < ApplicationController
 
-  def index
-
+  def show
+    @guest = Guest.find(params[:id])
   end
-
-  # def show
-  #   @? = ?.find(params[:id])
-  # end
 
   # def new
   #   @? = ?.find(params[:shelter_id])

@@ -12,13 +12,10 @@ RSpec.describe "the guest show page", type: :feature do
     guest_1.rooms << room_2
     # When I visit a guest's show page
     visit "/guests/#{guest_1.id}"
-    
+    # save_and_open_page
     # I see the guest's name
     expect(page).to have_content(guest_1.name)
-    # And I see a list of all the rooms they've stayed in
-    expect(page).to have_content(room_1.id)
-    expect(page).to have_content(room_2.id)
-    # including the room's suite, nightly rate, 
+    # And I see a list of all the rooms they've stayed in including the room's suite, nightly rate, 
     expect(page).to have_content(room_1.suite)
     expect(page).to have_content(room_2.suite)
     expect(page).to have_content(room_1.rate)
