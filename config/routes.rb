@@ -6,5 +6,8 @@ Rails.application.routes.draw do
 
   get "/guests/:id", to: "guests#show", as: :show_guest
   patch "/guests/:id", to: "guests#update", as: :patch_suite
-  get "/rooms/:id", to: "rooms#index", as: :index_rooms
+
+  get "/rooms", to: "rooms#index", as: :index_rooms
+
+  get "/hotels", to: "hotels#index", as: :index_hotels
 end
