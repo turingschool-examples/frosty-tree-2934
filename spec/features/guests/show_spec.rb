@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Room, type: :model do
+RSpec.describe "Guest" do
   before (:each) do
     @hotel_1 = Hotel.create!(name: "Echo Mountain Inn", location: "Echo Mountain")
     @hotel_2 = Hotel.create!(name: "A-basin Hotel", location: "A-basin")
@@ -23,25 +23,31 @@ RSpec.describe Room, type: :model do
     @guest_room_2 = GuestRoom.create!(guest_id: @guest_2.id, room_id: @room_1.id)
     @guest_room_3 = GuestRoom.create!(guest_id: @guest_3.id, room_id: @room_2.id)
     @guest_room_4 = GuestRoom.create!(guest_id: @guest_4.id, room_id: @room_2.id)
-    @guest_room_5 = GuestRoom.create!(guest_id: @guest_5.id, room_id: @room_2.id)
-
-  end
-
-  describe "relationships" do
-    it { should belong_to :hotel }
   end
 
 
-  describe Room, type: :model do
-    describe "relationships" do
-      it {should have_many(:guest_rooms)}
-      it {should have_many(:guests).through(:guest_rooms)}
-    end
+  it "has a show page that lists guest's name" do
+    visit "/guests/#{@guest_1.id}"
+
+    expect(page).to have_content(@guest_1.name)
+    expect(page).to have_content("Presidential")
+    expect(page).to have_content(100)
+    expect(page).to have_content("Echo Mountain Inn")
+
   end
 
-  it "has a count number of guests method" do
-    expect(@room_1.count_guests).to eq(2)
-    expect(@room_2.count_guests).to eq(3)
-    expect(@room_3.count_guests).to eq(0)
+  it "can add a room to a guest" do
+    visit "/guests/#{@guest_1.id}"
+
+    expect(page).to have_field(:room_id)
+    expect(page).to have_content("New room")
+
+    fill_in :room_id, with: (@room_4.id)
+    click_button "Submit"
+
+    expect(current_path).to eq("/guests/#{@guest_1.id}")
+    expect(page).to have_content(@room_4.suite)
+    expect(page).to have_content(@room_4.rate)
+    expect(page).to have_content(@room_4.hotel.name)
   end
 end

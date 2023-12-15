@@ -1,0 +1,11 @@
+<h1> Rooms Index of Rooms</h1>
+
+<% @rooms.each do |room| %>
+<section id=<%="index-#{room.id}"%>>
+<h2> <%=room.suite%> </h2>
+  <p> Suite: <%= room.suite %> </p>
+  <p> Rate: <%= room.rate %> </p>
+  <p> Hotel: <%= room.hotel.name %> </p>
+  <p> Number of Guests Stayed: <%= room.count_guests %> </p>
+<% end  %>
+</section>
