@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "guests/:id", to: "guests#show"
   get "guests/new", to: "guests#new"
   post "guests", to: "guests#create"
+  post "guests/:id/add_room", to: "guests#add_room"
+
 
   get "rooms", to: "rooms#index"
 end
