@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+@hotel_1 = Hotel.create!(name: "Best Eastern", location: "123 Highway 21")
+@guest_1 = Guest.create!(name: "John Smith")
+@room_1 = @hotel_1.rooms.create!(suite: "Master", rate: 300)
+@room_2 = @hotel_1.rooms.create!(suite: "Economy", rate: 100)
+
+Stay.create!(guest: @guest_1, room: @room_1)
+Stay.create!(guest: @guest_1, room: @room_2)
