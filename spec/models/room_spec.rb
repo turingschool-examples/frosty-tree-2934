@@ -25,4 +25,10 @@ RSpec.describe Room, type: :model do
       expect(@turing_single_suite.find_hotel).to eq("Turing")
     end
   end
+
+  describe "#number_of_guests" do
+    it "can find how many guests have stayed in a room" do
+      expect(@fsa_single_suite.number_of_guests).to eq(1)
+    end
+  end
 end
