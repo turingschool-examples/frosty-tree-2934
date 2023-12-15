@@ -1,0 +1,12 @@
+<h1><%= @guest.name %>'s Information</h1>
+
+<p>Rooms Stayed In:</p>
+
+<ul id="rooms-stayed-in">
+  <% @guest.rooms.each do |room| %>
+  <li>Room Suite: <%= room.suite %></li>
+  <li>Nightly Rate: <%= room.rate %></li>
+  <% end %>
+  <li>Hotel: </li>
+
+</ul>
