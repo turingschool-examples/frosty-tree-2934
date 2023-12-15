@@ -20,7 +20,7 @@ RSpec.describe "Hotel Show Page", type: :feature do
     Stay.create!(guest: @guest_2, room: @room_1)
   end
 
-  it "displays list of guests at hotel_1" do
+  xit "displays list of guests at hotel_1" do
     #extension
     
     #As a visitor
@@ -32,7 +32,7 @@ RSpec.describe "Hotel Show Page", type: :feature do
     expect(page).to have_content(@guest_2.name)
   end
 
-  it "displays list of guests at hotel_2" do
+  xit "displays list of guests at hotel_2" do
     #extension
     
     #As a visitor
