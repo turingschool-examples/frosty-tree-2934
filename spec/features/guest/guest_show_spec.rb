@@ -29,17 +29,25 @@ RSpec.describe "the guest show page", type: :feature do
     room_1 = hotel_1.rooms.create!(rate: 125, suite: "Presidential")
     room_2 = hotel_1.rooms.create!(rate: 5, suite: "Squatter")
     guest_1 = Guest.create!(name: 'Charlize Theron', nights: 3)
-  
+    
     # When I visit a guest's show page
     visit "/guests/#{guest_1.id}"
-    save_and_open_page
+    # save_and_open_page
+    expect(page).to_not have_content(room_1.suite)
     # Then I see a form to add a room to this guest.
-    expect(page).to have_content(room_1.id)
-
+    expect(page).to have_button("Add Room")
+    
     # When I fill in a field with the id of an existing room
+    fill_in "Room ID", with: room_1.id
     # And I click submit
+    click_button "Add Room"
+    # save_and_open_page
+    # require 'pry'; binding.pry
     # Then I am redirected back to the guest's show page
     # And I see the room now listed under this guest's rooms.
+    expect(current_path).to eq("/guests/#{guest.id}")
+    expect(page).to have_content(room_1.rate)
+    expect(page).to have_content(room_1.suite)
     # (You do not have to test for a sad path, for example if the ID submitted is not an existing room)
   end
 end
