@@ -1,0 +1,25 @@
+<h1>Guest: <%= @guest.name %></h1>
+
+<section id="rooms">
+  <h2> Rooms: </h2>
+  <% @guest.rooms.each do |room| %>
+    <p>Hotel: <%= room.hotel.name %></p>
+    <ul>
+      <li>Suite: <%= room.suite %></li>
+      <li>Rate: <%= room.rate %></li>
+    </ul>
+  <% end %>
+</section>
+
+<section id ="add-a-room"
+  <h2> Add a Room: </h2>
+
+  <%= form_with url: "/guests/#{@guest.id}", method: :post, data: { turbo: false } do |f| %>
+    <%= f.label :room_id, "Room ID" %>
+    <%= f.text_field :room_id %></br>
+    <%= hidden_field_tag(:guest_id, @guest.id) %>
+
+    <%= f.submit "Submit" %>
+  <% end %>
+</section>
+
