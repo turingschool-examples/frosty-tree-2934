@@ -1,5 +1,5 @@
 class Room < ApplicationRecord
-  has_many :guests
+  has_many :guests, through :stays
   belongs_to :hotel
 
   validates :rate, presence: true, numericality: true
