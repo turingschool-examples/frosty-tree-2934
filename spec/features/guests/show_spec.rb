@@ -42,8 +42,8 @@ RSpec.describe "Guest Show Page", type: :feature do
     #Then I see a form to add a room to this guest.
     expect(page).to have_content("Add a room")
     #When I fill in a field with the id of an existing room
-    fill_in :suite, with "Deluxe"
-    fill_in :rate, with 200
+    fill_in :suite, with: "Deluxe"
+    fill_in :rate, with: 200
     #And I click submit
     click_button "Submit"
     #Then I am redirected back to the guest's show page
