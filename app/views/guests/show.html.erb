@@ -4,7 +4,7 @@
 <ul>
   <% @guest.rooms.each do |room| %>
     <li>
-      Hotel: <%= room.hotel.name %>,
+      <p><strong>Hotel: <%= room.hotel.name %>,</strong><p>
       Suite: <%= room.suite %>,
       Rate: $<%= room.rate %>
     </li>
