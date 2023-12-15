@@ -1,9 +1,8 @@
 require "rails_helper"
 
-RSpec.describe Hotel, type: :model do
+RSpec.describe Guest, type: :model do
   describe "relationships" do
     it { should have_many :rooms }
-    it { should have_many :reservations }
   end
 
   before(:each) do
@@ -21,10 +20,9 @@ RSpec.describe Hotel, type: :model do
     @reservation_turing = Reservation.create!(room_id: @turing_single_suite.id, guest_id: @rob.id)
   end
 
-  describe "#find_all_uniq_guests" do
-    it "returns a unique list of all guests from the hotel" do
-      expect(@hack_reactor.find_all_uniq_guests).to eq([@rob])
+  describe "#add_room" do
+    it "adds an existing room to the guests' rooms" do
+      expect(@rob.add_room(@hack_reactor_king_suite)).to eq([@turing_single_suite, @fsa_single_suite, @hack_reactor_king_suite])
     end
-
   end
 end

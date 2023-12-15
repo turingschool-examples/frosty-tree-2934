@@ -1,0 +1,18 @@
+<h1><%= @guest.name %>'s Information</h1>
+
+<h2>Rooms Stayed In:</h2>
+
+<% @guest.rooms.each do |room| %>
+<ul id="rooms-stayed-in-<%= room.id %>">
+  <li>Room Suite: <%= room.suite %></li>
+  <li>Nightly Rate: <%= room.rate %></li>
+  <li>Name of Hotel: <%= room.find_hotel %></li>
+</ul>
+<% end %>
+
+<h2>Add A Room</h2>
+<%= form_with url: patch_suite_path, method: :patch, data: {turbo: false}  do |f| %>
+  <%= f.label :room_id, "Suite ID:" %>
+  <%= f.number_field :room_id %>
+  <%= f.submit "Add Room" %>
+<% end %>

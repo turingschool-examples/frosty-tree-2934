@@ -1,11 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Hotel, type: :model do
-  describe "relationships" do
-    it { should have_many :rooms }
-    it { should have_many :reservations }
-  end
-
+RSpec.describe "Index Show Page", type: :feature do
   before(:each) do
     @turing = Hotel.create!(name: "Turing", location: "Colorado")
     @fsa = Hotel.create!(name: "Fullstack Academy", location: "New York")
@@ -21,10 +16,5 @@ RSpec.describe Hotel, type: :model do
     @reservation_turing = Reservation.create!(room_id: @turing_single_suite.id, guest_id: @rob.id)
   end
 
-  describe "#find_all_uniq_guests" do
-    it "returns a unique list of all guests from the hotel" do
-      expect(@hack_reactor.find_all_uniq_guests).to eq([@rob])
-    end
-
-  end
+  
 end
