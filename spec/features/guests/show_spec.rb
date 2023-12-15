@@ -39,7 +39,7 @@ RSpec.describe "Guest Show Page", type: :feature do
     #As a visitor
     #When I visit a guest's show page
 
-    visit "guests/#{@guest_1.id}"
+    visit "/guests/#{@guest_1.id}"
     #Then I see a form to add a room to this guest.
     expect(page).to have_content("Add a Stay for this Guest")
     #When I fill in a field with the id of an existing room
