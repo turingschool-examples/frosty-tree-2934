@@ -12,7 +12,7 @@ RSpec.describe "Guest Show Page", type: :feature do
     guest.rooms << room1
     guest.rooms << room2
     
-   visit "/guests"
+    visit "/guests/#{guest.id}"
 
    expect(page).to have_content("Guest: #{guest.name}")
 
