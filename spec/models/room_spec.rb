@@ -6,15 +6,29 @@ RSpec.describe Room, type: :model do
     it { should have_many :guests }
   end
 
-  describe "class methods" do
-    it "should exist, and have a rate and suite" do
-      holiday_inn = Hotel.create(name: "Holiday Inn", location: "Mars")
-      honeymoon_suite = holiday_inn.rooms.create(rate: 25, suite: "Honeymoon")
-      florence = honeymoon_suite.guests.create(name: "Florence Pugh", nights: 12)
-    
-      expect(honeymoon_suite).to be_a Room
-      expect(honeymoon_suite.rate).to eq(25)
-      expect(honeymoon_suite.suite).to eq("Honeymoon")
+  it "should exist, and have a rate and suite" do
+    holiday_inn = Hotel.create(name: "Holiday Inn", location: "Mars")
+    honeymoon_suite = holiday_inn.rooms.create(rate: 25, suite: "Honeymoon")
+    florence = honeymoon_suite.guests.create(name: "Florence Pugh", nights: 12)
+  
+    expect(honeymoon_suite).to be_a Room
+    expect(honeymoon_suite.rate).to eq(25)
+    expect(honeymoon_suite.suite).to eq("Honeymoon")
+  end
+
+  describe "instance methods" do
+    describe ".add_guest_to_room" do
+      it "adds a guest to a room" do
+        holiday_inn = Hotel.create(name: "Holiday Inn", location: "Mars")
+        honeymoon_suite = holiday_inn.rooms.create(rate: 25, suite: "Honeymoon")
+        oval_suite = holiday_inn.rooms.create(rate: 100, suite: "Oval")
+        florence = honeymoon_suite.guests.create(name: "Florence Pugh", nights: 12)
+
+        require 'pry'; binding.pry
+        
+        oval_suite.add_guest_to_room(florence.id)
+        expect(florence.rooms).to include(honeymoon_suite, oval_suite)
+      end
     end
   end
 end

@@ -1,3 +1,3 @@
 class Guest < ApplicationRecord
-    has_many :rooms
-  end
+  has_many :rooms
+end
