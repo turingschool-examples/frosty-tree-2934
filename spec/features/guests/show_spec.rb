@@ -22,17 +22,17 @@ RSpec.describe "Guest Show Page" do
   it "displays guest name, rooms they've stayed in, and room details" do
     visit "/guests/#{@guest_2.id}"
 
-    expect(page).to have_content(@guest_2.name)
-    expect(page).to have_content(@guest_2.rooms)
+    expect(page).to have_content("#{@guest_2.name}")
 
-    expect(page).to have_content(@guest_2.rooms.first.suite)
-    expect(page).to have_content(@guest_2.rooms.first.nightly_rate)
-    expect(page).to have_content(@guest_2.rooms.first.hotel_id.name)
+    within("#rooms") do
+      expect(page).to have_content("#{@guest_2.rooms.first.suite}")
+      expect(page).to have_content("#{@guest_2.rooms.first.rate}")
+      expect(page).to have_content("#{@guest_2.rooms.first.hotel.name}")
 
-    expect(page).to have_content(@guest_2.rooms.second.suite)
-    expect(page).to have_content(@guest_2.rooms.second.nightly_rate)
-    expect(page).to have_content(@guest_2.rooms.second.hotel_id.name)
-    
+      expect(page).to have_content("#{@guest_2.rooms.second.suite}")
+      expect(page).to have_content("#{@guest_2.rooms.second.rate}")
+      expect(page).to have_content("#{@guest_2.rooms.second.hotel.name}")
+    end
   end
 
 end
