@@ -1,4 +1,7 @@
 class Room < ApplicationRecord
-  belongs_to :hotel
   has_many :guests
+  belongs_to :hotel
+
+  validates :rate, presence: true, numericality: true
+  validates :suite, presence: true
 end
