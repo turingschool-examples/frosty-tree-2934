@@ -8,8 +8,12 @@
 
 @hotel_1 = Hotel.create!(name: "Best Eastern", location: "123 Highway 21")
 @guest_1 = Guest.create!(name: "John Smith")
+@guest_2 = Guest.create!(name: "Jane Smith")
 @room_1 = @hotel_1.rooms.create!(suite: "Master", rate: 300)
 @room_2 = @hotel_1.rooms.create!(suite: "Economy", rate: 100)
+@room_3 = @hotel_1.rooms.create!(suite: "Deluxe", rate: 200)
+
 
 Stay.create!(guest: @guest_1, room: @room_1)
 Stay.create!(guest: @guest_1, room: @room_2)
+Stay.create!(guest: @guest_2, room: @room_1)

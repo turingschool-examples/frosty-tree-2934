@@ -23,9 +23,9 @@ RSpec.describe "Room Index Page", type: :feature do
     visit "/rooms/"
     
     #Then I see a list of all rooms
-    expect(page).to have_content("#{@room_1.name}")
-    expect(page).to have_content("#{@room_2.name}")
-    expect(page).to have_content("#{@room_3.name}")
+    expect(page).to have_content("#{@room_1.suite}")
+    expect(page).to have_content("#{@room_2.suite}")
+    expect(page).to have_content("#{@room_3.suite}")
 
     #including the room's suite, nightly rate, and the name of the hotel that it belongs to
     expect(page).to have_content("#{@room_1.rate}")
@@ -36,8 +36,8 @@ RSpec.describe "Room Index Page", type: :feature do
 
     #and the number of guests that have stayed in that room.
 
-    expect(page).to have_content("2 Guest Stay(s)")
-    expect(page).to have_content("1 Guest Stay(s)")
-    expect(page).to have_content("0 Guest Stay(s)")
+    expect(page).to have_content("Number of Stays: 2")
+    expect(page).to have_content("Number of Stays: 1")
+    expect(page).to have_content("Number of Stays: 0")
   end
 end
