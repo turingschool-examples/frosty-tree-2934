@@ -6,7 +6,6 @@
   <p><%= "Hotel: #{room.hotel.name}" %></p>
 <% end %>
 
-
 <h2>Add a Room</h2>
 <%= form_with url: "/guests/#{@guest.id}/rooms", data: { turbo: false }, local: true do |f| %>
   <%= f.label "Enter room id:" %>
